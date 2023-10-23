@@ -197,11 +197,7 @@ const module = (() => {
         
         is_odd_bits: (bits) => {
             return sjcl.bn.fromBits(bits).limbs[0] & 0x1;
-        },
-        
-        version: () => {
-            return "1.0";
-        },
+        }
     }
 })();
 
