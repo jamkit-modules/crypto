@@ -34,7 +34,7 @@ var sjcl = {
    * @namespace
    */
   keyexchange: {},
-  
+
   /**
    * Cipher modes of operation.
    * @namespace
@@ -46,7 +46,7 @@ var sjcl = {
    * @namespace
    */
   misc: {},
-  
+
   /**
    * Bit array encoders and decoders.
    * @namespace
@@ -58,7 +58,7 @@ var sjcl = {
    * the method names are "fromBits" and "toBits".
    */
   codec: {},
-  
+
   /**
    * Exceptions.
    * @namespace
@@ -72,7 +72,7 @@ var sjcl = {
       this.toString = function() { return "CORRUPT: "+this.message; };
       this.message = message;
     },
-    
+
     /**
      * Invalid parameter.
      * @constructor
@@ -81,7 +81,7 @@ var sjcl = {
       this.toString = function() { return "INVALID: "+this.message; };
       this.message = message;
     },
-    
+
     /**
      * Bug or missing feature in SJCL.
      * @constructor

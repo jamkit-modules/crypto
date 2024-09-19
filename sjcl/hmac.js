@@ -19,12 +19,12 @@ sjcl.misc.hmac = function (key, Hash) {
   if (key.length > bs) {
     key = Hash.hash(key);
   }
-  
+
   for (i=0; i<bs; i++) {
     exKey[0][i] = key[i]^0x36363636;
     exKey[1][i] = key[i]^0x5C5C5C5C;
   }
-  
+
   this._baseHash[0].update(exKey[0]);
   this._baseHash[1].update(exKey[1]);
   this._resultHash = new Hash(this._baseHash[0]);

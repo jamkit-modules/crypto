@@ -74,7 +74,7 @@ sjcl.bitArray = {
     if (a1.length === 0 || a2.length === 0) {
       return a1.concat(a2);
     }
-    
+
     var last = a1[a1.length-1], shift = sjcl.bitArray.getPartial(last);
     if (shift === 32) {
       return a1.concat(a2);
@@ -160,7 +160,7 @@ sjcl.bitArray = {
   _shiftRight: function (a, shift, carry, out) {
     var i, last2=0, shift2;
     if (out === undefined) { out = []; }
-    
+
     for (; shift >= 32; shift -= 32) {
       out.push(carry);
       carry = 0;
@@ -168,7 +168,7 @@ sjcl.bitArray = {
     if (shift === 0) {
       return out.concat(a);
     }
-    
+
     for (i=0; i<a.length; i++) {
       out.push(carry | a[i]>>>shift);
       carry = a[i] << (32-shift);
@@ -178,7 +178,7 @@ sjcl.bitArray = {
     out.push(sjcl.bitArray.partial(shift+shift2 & 31, (shift + shift2 > 32) ? carry : out.pop(),1));
     return out;
   },
-  
+
   /** xor a block of 4 words together.
    * @private
    */

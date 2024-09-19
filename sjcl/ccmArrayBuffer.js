@@ -96,7 +96,7 @@ sjcl.arrayBuffer.ccm = {
     tlen = tlen || sjcl.arrayBuffer.ccm.defaults.tlen;
     ol = ol || plaintext_buffer.byteLength;
     tlen = Math.ceil(tlen/8);
-    
+
     for (L=2; L<4 && ol >>> 8*L; L++) {}
     if (L < 15 - ivl) { L = 15-ivl; }
     iv = w.clamp(iv,8*(15-L));
@@ -137,7 +137,7 @@ sjcl.arrayBuffer.ccm = {
     for (L=2; L<4 && ol >>> 8*L; L++) {}
     if (L < 15 - ivl) { L = 15-ivl; }
     iv = w.clamp(iv,8*(15-L));
-    
+
     //prf should use a 256 bit key to make precomputation attacks infeasible
 
     //decrypt the buffer

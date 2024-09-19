@@ -44,7 +44,7 @@ sjcl.hash.sha256.prototype = {
    * @constant
    */
   blockSize: 512,
-   
+
   /**
    * Reset the hash state.
    * @return this
@@ -55,7 +55,7 @@ sjcl.hash.sha256.prototype = {
     this._length = 0;
     return this;
   },
-  
+
   /**
    * Input several words to the hash.
    * @param {bitArray|String} data the data to hash.
@@ -87,7 +87,7 @@ sjcl.hash.sha256.prototype = {
     }
     return this;
   },
-  
+
   /**
    * Complete hashing and output the hash value.
    * @return {bitArray} The hash value, an array of 8 big-endian words.
@@ -97,12 +97,12 @@ sjcl.hash.sha256.prototype = {
 
     // Round out and push the buffer
     b = sjcl.bitArray.concat(b, [sjcl.bitArray.partial(1,1)]);
-    
+
     // Round out the buffer to a multiple of 16 words, less the 2 length words.
     for (i = b.length + 2; i & 15; i++) {
       b.push(0);
     }
-    
+
     // append the length
     b.push(Math.floor(this._length / 0x100000000));
     b.push(this._length | 0);
@@ -123,7 +123,7 @@ sjcl.hash.sha256.prototype = {
   /*
   _init:[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19],
   */
-  
+
   /**
    * The SHA-256 hash key, to be precomputed.
    * @private
@@ -168,13 +168,13 @@ sjcl.hash.sha256.prototype = {
       }
     }
   },
-  
+
   /**
    * Perform one cycle of SHA-256.
    * @param {Uint32Array|bitArray} w one block of words.
    * @private
    */
-  _block:function (w) {  
+  _block:function (w) {
     var i, tmp, a, b,
       h = this._h,
       k = this._key,
@@ -205,9 +205,9 @@ sjcl.hash.sha256.prototype = {
                          (b>>>17 ^ b>>>19 ^ b>>>10 ^ b<<15 ^ b<<13) +
                          w[i&15] + w[(i+9) & 15]) | 0;
       }
-      
+
       tmp = (tmp + h7 + (h4>>>6 ^ h4>>>11 ^ h4>>>25 ^ h4<<26 ^ h4<<21 ^ h4<<7) +  (h6 ^ h4&(h5^h6)) + k[i]); // | 0;
-      
+
       // shift register
       h7 = h6; h6 = h5; h5 = h4;
       h4 = h3 + tmp | 0;

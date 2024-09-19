@@ -22,7 +22,7 @@ sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity.
      * @constant
      */
     name: "cbc",
-    
+
     /** Encrypt in CBC mode with PKCS#5 padding.
      * @param {Object} prp The block cipher.  It must have a block size of 16 bytes.
      * @param {bitArray} plaintext The plaintext data.
@@ -48,13 +48,13 @@ sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity.
       if (bl&7) {
         throw new sjcl.exception.invalid("pkcs#5 padding only works for multiples of a byte");
       }
-    
+
       for (i=0; bp+128 <= bl; i+=4, bp+=128) {
         /* Encrypt a non-final block */
         iv = prp.encrypt(xor(iv, plaintext.slice(i,i+4)));
         output.splice(i,0,iv[0],iv[1],iv[2],iv[3]);
       }
-      
+
       /* Construct the pad. */
       bl = (16 - ((bl >> 3) & 15)) * 0x1010101;
 
@@ -63,7 +63,7 @@ sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity.
       output.splice(i,0,iv[0],iv[1],iv[2],iv[3]);
       return output;
     },
-    
+
     /** Decrypt in CBC mode.
      * @param {Object} prp The block cipher.  It must have a block size of 16 bytes.
      * @param {bitArray} ciphertext The ciphertext data.
@@ -88,9 +88,9 @@ sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity.
           xor = w._xor4,
           bi, bo,
           output = [];
-          
+
       adata = adata || [];
-    
+
       for (i=0; i<ciphertext.length; i+=4) {
         bi = ciphertext.slice(i,i+4);
         bo = xor(iv,prp.decrypt(bi));

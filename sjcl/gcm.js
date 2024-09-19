@@ -13,7 +13,7 @@ sjcl.mode.gcm = {
    * @constant
    */
   name: "gcm",
-  
+
   /** Encrypt in GCM mode.
    * @static
    * @param {Object} prf The pseudorandom function.  It must have a block size of 16 bytes.
@@ -33,7 +33,7 @@ sjcl.mode.gcm = {
 
     return w.concat(out.data, out.tag);
   },
-  
+
   /** Decrypt in GCM mode.
    * @static
    * @param {Object} prf The pseudorandom function.  It must have a block size of 16 bytes.

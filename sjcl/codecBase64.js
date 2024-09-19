@@ -14,7 +14,7 @@ sjcl.codec.base64 = {
    * @private
    */
   _chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
-  
+
   /** Convert from a bitArray to a base64 string. */
   fromBits: function (arr, _noEquals, _url) {
     var out = "", i, bits=0, c = sjcl.codec.base64._chars, ta=0, bl = sjcl.bitArray.bitLength(arr);
@@ -35,7 +35,7 @@ sjcl.codec.base64 = {
     while ((out.length & 3) && !_noEquals) { out += "="; }
     return out;
   },
-  
+
   /** Convert from a base64 string to a bitArray */
   toBits: function(str, _url) {
     str = str.replace(/\s|=/g,'');

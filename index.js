@@ -36,13 +36,13 @@ const module = (function() {
         "cipher": "aes",                  // cipher
         "salt": "lx06UoJDNys=",           // key derivation salt
     }
-    
+
     const _hash = {
         "sha256": sjcl.hash.sha256,
         "sha512": sjcl.hash.sha512,
         "ripemd160": sjcl.hash.ripemd160
     }
-    
+
     sjcl.random.addEntropy(random(1024));
 
     return {
@@ -51,19 +51,19 @@ const module = (function() {
                 return sjcl.hash.sha256.hash(data);
             }
         },
-        
+
         sha512: {
             digest: function(data) {
                 return sjcl.hash.sha512.hash(data);
             }
         },
-        
+
         ripemd160: {
             digest: function(data) {
                 return sjcl.hash.ripemd160.hash(data);
             }
         },
-        
+
         keccak256: {
             digest: function(data) {
                 return sjcl.codec.hex.toBits(
@@ -75,13 +75,13 @@ const module = (function() {
                 );
             }
         },
-        
+
         hmac: {
             digest: function(hash, key, data) {
                 return new sjcl.misc.hmac(key, _hash[hash]).encrypt(data);
             }
         },
-        
+
         pbkdf2: {
             digest: function(hash, password, salt, count, length) {
                 return sjcl.misc.pbkdf2(password, salt, count, length, function(key) {
@@ -89,7 +89,7 @@ const module = (function() {
                 });
             }
         },
-        
+
         ecdsa: {
             generate_keys: function(curve, secret) {
                 return sjcl.ecc.ecdsa.generateKeys(
@@ -105,7 +105,7 @@ const module = (function() {
                 return sjcl.ecc.curves[name];
             }
         },
-        
+
         base58: {
             encode: function(bits) {
                 return sjcl.codec.base58.fromBits(bits);
@@ -122,79 +122,79 @@ const module = (function() {
                 }
             }
         },
-        
+
         encrypt: function(password, plaintext) {
             return sjcl.encrypt(password, plaintext, _encrypt_params);
         },
-        
+
         decrypt: function(password, ciphertext) {
             return sjcl.decrypt(password, ciphertext);
         },
-        
+
         number_from_bits: function(bits) {
             return sjcl.bn.fromBits(bits);
         },
-        
+
         number_to_bits: function(number) {
             return number.toBits();
         },
-        
+
         number_from_hex: function(hex) {
             return new sjcl.bn(hex);
         },
-        
+
         number_from_value: function(value) {
             return new sjcl.bn(value);
         },
-        
+
         random_number: function(modulus, paranoia) {
             return new sjcl.bn.random(modulus, paranoia);
         },
-        
+
         string_to_bits: function(string) {
             return sjcl.codec.utf8String.toBits(string);
         },
-        
+
         bytes_from_bits: function(bits) {
             return sjcl.codec.bytes.fromBits(bits);
         },
-        
+
         bytes_to_bits: function(bytes) {
             return sjcl.codec.bytes.toBits(bytes);
         },
-        
+
         hex_from_bits: function(bits) {
             return sjcl.codec.hex.fromBits(bits);
         },
-        
+
         hex_to_bits: function(hex) {
             return sjcl.codec.hex.toBits(hex);
         },
-        
+
         bits_from_value: function(value) {
-            return new sjcl.bn(value).toBits();   
+            return new sjcl.bn(value).toBits();
         },
-        
+
         bits_concat: function(bits1, bits2) {
             return sjcl.bitArray.concat(bits1, bits2);
         },
-        
+
         bits_slice: function(bits, start, end) {
             return sjcl.bitArray.bitSlice(bits, start, end);
         },
-        
+
         bits_extract: function(bits, start, length) {
             return sjcl.bitArray.extract(bits, start, length);
         },
-        
+
         bits_partial: function(length, value) {
             return sjcl.bitArray.partial(length, value);
         },
-        
+
         bits_length: function(bits) {
             return sjcl.bitArray.bitLength(bits);
         },
-        
+
         is_odd_bits: function(bits) {
             return sjcl.bn.fromBits(bits).limbs[0] & 0x1;
         }

@@ -44,7 +44,7 @@ sjcl.hash.sha512.prototype = {
    * @constant
    */
   blockSize: 1024,
-   
+
   /**
    * Reset the hash state.
    * @return this
@@ -55,7 +55,7 @@ sjcl.hash.sha512.prototype = {
     this._length = 0;
     return this;
   },
-  
+
   /**
    * Input several words to the hash.
    * @param {bitArray|String} data the data to hash.
@@ -87,7 +87,7 @@ sjcl.hash.sha512.prototype = {
     }
     return this;
   },
-  
+
   /**
    * Complete hashing and output the hash value.
    * @return {bitArray} The hash value, an array of 16 big-endian words.

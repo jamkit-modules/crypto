@@ -313,7 +313,7 @@ sjcl.ecc.curves = {
     "0xb3312fa7e23ee7e4988e056be3f82d19181d9c6efe8141120314088f5013875ac656398d8a2ed19d2a85c8edd3ec2aef",
     "0xaa87ca22be8b05378eb1c71ef320ad746e1d3b628ba79b9859f741e082542a385502f25dbf55296c3a545e3872760ab7",
     "0x3617de4a96262c6f5d9e98bf9292dc29f8f41dbd289a147ce9da3113b5f0b8c00a60b1ce1d7e819d7a431d7c90ea0e5f"),
-    
+
   c521: new sjcl.ecc.curve(
     sjcl.bn.prime.p521,
     "0x1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409",
@@ -375,7 +375,7 @@ sjcl.ecc.deserialize = function (key) {
     return new sjcl.ecc[key.type].secretKey(curve, exponent);
   } else {
     if (!key.point) { throw new sjcl.exception.invalid("invalid point"); }
-    
+
     var point = curve.fromBits(sjcl.codec.hex.toBits(key.point));
     return new sjcl.ecc[key.type].publicKey(curve, point);
   }
@@ -505,7 +505,7 @@ sjcl.ecc.elGamal.publicKey.prototype = {
         key = sjcl.hash.sha256.hash(this._point.mult(sec).toBits());
     return { key: key, tag: tag };
   },
-  
+
   getType: function() {
     return "elGamal";
   }

@@ -36,7 +36,7 @@ sjcl.hash.sha1.prototype = {
    * @constant
    */
   blockSize: 512,
-   
+
   /**
    * Reset the hash state.
    * @return this
@@ -47,7 +47,7 @@ sjcl.hash.sha1.prototype = {
     this._length = 0;
     return this;
   },
-  
+
   /**
    * Input several words to the hash.
    * @param {bitArray|String} data the data to hash.
@@ -81,7 +81,7 @@ sjcl.hash.sha1.prototype = {
     }
     return this;
   },
-  
+
   /**
    * Complete hashing and output the hash value.
    * @return {bitArray} The hash value, an array of 5 big-endian words. TODO
@@ -143,7 +143,7 @@ sjcl.hash.sha1.prototype = {
   _S:function(n, x) {
     return (x << n) | (x >>> 32-n);
   },
-  
+
   /**
    * Perform one cycle of SHA-1.
    * @param {Uint32Array|bitArray} words one block of words.
